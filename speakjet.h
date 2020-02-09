@@ -1,0 +1,457 @@
+// speakjet.h... 
+//
+//      arrays and defines to assist conversion to/from the speakjet phonemes
+
+char codetable[255][16] = {
+	"\\P0", 	// 0
+	"\\P1", 	// 1
+	"\\P2", 	// 2
+	"\\P3", 	// 3
+	"\\P4", 	// 4
+	"\\P5", 	// 5
+	"\\P6", 	// 6
+	"\\FAST",	// 7
+	"\\SLOW",	// 8
+	"",		// 9
+	"",		// 10
+	"",		// 11
+	"",		// 12
+	"",		// 13
+	"\\STRESS",	// 14
+	"\\RELAX",	// 15
+	"",		// 16
+	"",		// 17
+	"",		// 18
+	"",		// 19
+	"\\VOLUME",	// 20
+	"\\SPEED",	// 21
+	"\\PITCH",	// 22
+	"\\BEND",	// 23
+	"",		// 24
+	"",		// 25
+	"\\REPEAT",	// 26
+	"",		// 27
+	"",		// 28
+	"",		// 29
+	"\\DELAY",	// 30
+	"",		// 31
+	"",		// 32
+	"",		// 33
+	"",		// 34
+	"",		// 35
+	"",		// 36
+	"",		// 37
+	"",		// 38
+	"",		// 39
+	"",		// 40
+	"",		// 41
+	"",		// 42
+	"",		// 43
+	"",		// 44
+	"",		// 45
+	"",		// 46
+	"",		// 47
+	"",		// 48
+	"",		// 49
+	"",		// 50
+	"",		// 51
+	"",		// 52
+	"",		// 53
+	"",		// 54
+	"",		// 55
+	"",		// 56
+	"",		// 57
+	"",		// 58
+	"",		// 59
+	"",		// 60
+	"",		// 61
+	"",		// 62
+	"",		// 63
+	"",		// 64
+	"",		// 65
+	"",		// 66
+	"",		// 67
+	"",		// 68
+	"",		// 69
+	"",		// 70
+	"",		// 71
+	"",		// 72
+	"",		// 73
+	"",		// 74
+	"",		// 75
+	"",		// 76
+	"",		// 77
+	"",		// 78
+	"",		// 79
+	"",		// 80
+	"",		// 81
+	"",		// 82
+	"",		// 83
+	"",		// 84
+	"",		// 85
+	"",		// 86
+	"",		// 87
+	"",		// 88
+	"",		// 89
+	"",		// 90
+	"",		// 91
+	"",		// 92
+	"",		// 93
+	"",		// 94
+	"",		// 95
+	"",		// 96
+	"",		// 97
+	"",		// 98
+	"",		// 99
+	"",		// 100
+	"",		// 101
+	"",		// 102
+	"",		// 103
+	"",		// 104
+	"",		// 105
+	"",		// 106
+	"",		// 107
+	"",		// 108
+	"",		// 109
+	"",		// 110
+	"",		// 111
+	"",		// 112
+	"",		// 113
+	"",		// 114
+	"",		// 115
+	"",		// 116
+	"",		// 117
+	"",		// 118
+	"",		// 119
+	"",		// 120
+	"",		// 121
+	"",		// 122
+	"",		// 123
+	"",		// 124
+	"",		// 125
+	"",		// 126
+	"",		// 127
+	"\\IY",		// 128
+	"\\IH",		// 129
+	"\\EY",		// 130
+	"\\EH",		// 131
+	"\\AY",		// 132
+	"\\AX",		// 133
+	"\\UX",		// 134
+	"\\OH",		// 135
+	"\\AW",		// 136
+	"\\OW",		// 137
+	"\\UH",		// 138
+	"\\UW",		// 139
+	"\\MM",		// 140
+	"\\NE",		// 141
+	"\\NO",		// 142
+	"\\NGE",	// 143
+	"\\NGO",	// 144
+	"\\LE",		// 145
+	"\\LO",		// 146
+	"\\WW",		// 147
+	"\\RR",		// 148
+	"\\IYRR",	// 149
+	"\\EYRR",	// 150
+	"\\AXRR",	// 151
+	"\\AWRR",	// 152
+	"\\OWRR",	// 153
+	"\\EYIY",	// 154
+	"\\OHIY",	// 155
+	"\\OWIY",	// 156
+	"\\OHIH",	// 157
+	"\\IYEH",	// 158
+	"\\EHLE",	// 159
+	"\\IYUW",	// 160
+	"\\AXUW",	// 161
+	"\\IHWW",	// 162
+	"\\AYWW",	// 163
+	"\\OWWW",	// 164
+	"\\JH",		// 165
+	"\\VV",		// 166
+	"\\ZZ",		// 167
+	"\\ZH",		// 168
+	"\\DH",		// 169
+	"\\BE",		// 170
+	"\\BO",		// 171
+	"\\EB",		// 172
+	"\\OB",		// 173
+	"\\DE",		// 174
+	"\\DO",		// 175
+	"\\ED",		// 176
+	"\\OD",		// 177
+	"\\GE",		// 178
+	"\\GO",		// 179
+	"\\EG",		// 180
+	"\\OG",		// 181
+	"\\CH",		// 182
+	"\\HE",		// 183
+	"\\HO",		// 184
+	"\\WH",		// 185
+	"\\FF",		// 186
+	"\\SE",		// 187
+	"\\SO",		// 188
+	"\\SH",		// 189
+	"\\TH",		// 190
+	"\\TT",		// 191
+	"\\TU",		// 192
+	"\\TS",		// 193
+	"\\KE",		// 194
+	"\\KO",		// 195
+	"\\EK",		// 196
+	"\\OK",		// 197
+	"\\PE",		// 198
+	"\\PO",		// 199
+	"\\R0",		// 200
+	"\\R1",		// 201
+	"\\R2",		// 202
+	"\\R3",		// 203
+	"\\R4",		// 204
+	"\\R5",		// 205
+	"\\R6",		// 206
+	"\\R7",		// 207
+	"\\R8",		// 208
+	"\\R9",		// 209
+	"\\A0",		// 210
+	"\\A1",		// 211
+	"\\A2",		// 212
+	"\\A3",		// 213
+	"\\A4",		// 214
+	"\\A5",		// 215
+	"\\A6",		// 216
+	"\\A7",		// 217
+	"\\A8",		// 218
+	"\\A9",		// 219
+	"\\B0",		// 220
+	"\\B1",		// 221
+	"\\B2",		// 222
+	"\\B3",		// 223
+	"\\B4",		// 224
+	"\\B5",		// 225
+	"\\B6",		// 226
+	"\\B7",		// 227
+	"\\B8",		// 228
+	"\\B9",		// 229
+	"\\C0",		// 230
+	"\\C1",		// 231
+	"\\C2",		// 232
+	"\\C3",		// 233
+	"\\C4",		// 234
+	"\\C5",		// 235
+	"\\C6",		// 236
+	"\\C7",		// 237
+	"\\C8",		// 238
+	"\\C9",		// 239
+	"\\D0",		// 240
+	"\\D1",		// 241
+	"\\D2",		// 242
+	"\\D3",		// 243
+	"\\D4",		// 244
+	"\\D5",		// 245
+	"\\D6",		// 246
+	"\\D7",		// 247
+	"\\D8",		// 248
+	"\\D9",		// 249
+	"\\D10",	// 250
+	"\\D11",	// 251
+	"\\M0",		// 252
+	"\\M1",		// 253
+	"\\M2"		// 254
+};
+
+#define P0_code 	0
+#define P1_code 	1
+#define P2_code 	2
+#define P3_code 	3
+#define P4_code 	4
+#define P5_code 	5
+#define P6_code 	6
+#define fast_code 	7
+#define slow_code 	8
+#define stress_code 	14
+#define relax_code 	15
+#define wait_code 	16
+#define volume_code 	20
+#define speed_code 	21
+#define pitch_code 	22
+#define bend_code 	23
+#define repeat_code 	26
+#define delay_code 	30
+#define reset_code 	31
+#define IY_code 	128
+#define IH_code 	129
+#define EY_code 	130
+#define EH_code 	131
+#define AY_code 	132
+#define AX_code 	133
+#define UX_code 	134
+#define OH_code 	135
+#define AW_code 	136
+#define OW_code 	137
+#define UH_code 	138
+#define UW_code 	139
+#define MM_code 	140
+#define NE_code 	141
+#define NO_code 	142
+#define NGE_code 	143
+#define NGO_code 	144
+#define LE_code 	145
+#define LO_code 	146
+#define WW_code 	147
+#define RR_code 	148
+#define IYRR_code 	149
+#define EYRR_code 	150
+#define AXRR_code 	151
+#define AWRR_code 	152
+#define OWRR_code 	153
+#define EYIY_code 	154
+#define OHIY_code 	155
+#define OWIY_code 	156
+#define OHIH_code 	157
+#define IYEH_code 	158
+#define EHLE_code 	159
+#define IYUW_code 	160
+#define AXUW_code 	161
+#define IHWW_code 	162
+#define AYWW_code 	163
+#define OWWW_code 	164
+#define JH_code 	165
+#define VV_code 	166
+#define ZZ_code 	167
+#define ZH_code 	168
+#define DH_code 	169
+#define BE_code 	170
+#define BO_code 	171
+#define EB_code 	172
+#define OB_code 	173
+#define DE_code 	174
+#define DO_code 	175
+#define ED_code 	176
+#define OD_code 	177
+#define GE_code 	178
+#define GO_code 	179
+#define EG_code 	180
+#define OG_code 	181
+#define CH_code 	182
+#define HE_code 	183
+#define HO_code 	184
+#define WH_code 	185
+#define FF_code 	186
+#define SE_code 	187
+#define SO_code 	188
+#define SH_code 	189
+#define TH_code 	190
+#define TT_code 	191
+#define TU_code 	192
+#define TS_code 	193
+#define KE_code 	194
+#define KO_code 	195
+#define EK_code 	196
+#define OK_code 	197
+#define PE_code 	198
+#define PO_code 	199
+#define R0_code 	200
+#define R1_code 	201
+#define R2_code 	202
+#define R3_code 	203
+#define R4_code 	204
+#define R5_code 	205
+#define R6_code 	206
+#define R7_code 	207
+#define R8_code 	208
+#define R9_code 	209
+#define A0_code 	210
+#define A1_code 	211
+#define A2_code 	212
+#define A3_code 	213
+#define A4_code 	214
+#define A5_code 	215
+#define A6_code 	216
+#define A7_code 	217
+#define A8_code 	218
+#define A9_code 	219
+#define B0_code 	220
+#define B1_code 	221
+#define B2_code 	222
+#define B3_code 	223
+#define B4_code 	224
+#define B5_code 	225
+#define B6_code 	226
+#define B7_code 	227
+#define B8_code 	228
+#define B9_code 	229
+#define C0_code 	230
+#define C1_code 	231
+#define C2_code 	232
+#define C3_code 	233
+#define C4_code 	234
+#define C5_code 	235
+#define C6_code 	236
+#define C7_code 	237
+#define C8_code 	238
+#define C9_code 	239
+#define D0_code 	240
+#define D1_code 	241
+#define D2_code 	242
+#define D3_code 	243
+#define D4_code 	244
+#define D5_code 	245
+#define D6_code 	246
+#define D7_code 	247
+#define D8_code 	248
+#define D9_code 	249
+#define D10_code 	250
+#define D11_code 	251
+#define M0_code 	252
+#define M1_code 	253
+#define M2_code 	254
+
+#define O1C_pitch	33
+#define O2C_pitch	65
+#define O3C_pitch	131
+
+#define O1Cs_pitch	35
+#define O2Cs_pitch	69
+#define O3Cs_pitch	139
+
+#define O1D_pitch	37
+#define O2D_pitch	73
+#define O3D_pitch	147
+
+#define O1Ds_pitch	39
+#define O2Ds_pitch	78
+#define O3Ds_pitch	156
+
+#define O1E_pitch	41
+#define O2E_pitch	82
+#define O3E_pitch	165
+
+#define O1F_pitch	44
+#define O2F_pitch	87
+#define O3F_pitch	175
+
+#define O1Fs_pitch	46
+#define O2Fs_pitch	93
+#define O3Fs_pitch	185
+
+#define O1G_pitch	49
+#define O2G_pitch	98
+#define O3G_pitch	196
+
+#define O1Gs_pitch	52
+#define O2Gs_pitch	104
+#define O3Gs_pitch	208
+
+#define O1A_pitch	55
+#define O2A_pitch	110
+#define O3A_pitch	220
+
+#define O1As_pitch	58
+#define O2As_pitch	117
+#define O3As_pitch	233
+
+#define O1B_pitch	62
+#define O2B_pitch	123
+#define O3B_pitch	247
+
