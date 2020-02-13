@@ -1471,7 +1471,7 @@ void HandleCodeWithValue(unsigned char code, char *valueholder)
 {
 	int value;
 	unsigned char cvalue;
-	char valuestring[5];
+	char valuestring[15];
 
 	value=FetchValue(code);
 	if(value<0)
