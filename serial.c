@@ -12,6 +12,9 @@ char *portdevice = NULL;
 int baudrate = 19200;
 #define DEFAULTDEV  "/dev/ttyUSB0"
 
+// MacOS serial  default?
+// #define DEFAULTDEV  "/dev/tty.usbserial-AVQTCR3P"
+
 //serial device handle. yes, it's a global
 int serialfd = -1;
 
@@ -20,7 +23,7 @@ void reopen_port(void);
 
 void reopen_port(void)
 {
-	if (serialfd != -1)
+	if (serialfd > 0)
 		close(serialfd);
 	open_port();
 }
@@ -37,18 +40,24 @@ void open_port(void)
 	}
 
 	serialfd = open(portdevice, O_RDWR | O_NOCTTY | O_NONBLOCK);
-	if (serialfd == -1)
+	if (serialfd <= 0)
 	{
 		fprintf(stderr,"** ERR: Unable to open serial port %s\n",portdevice);
 		return;
 	}
 
-	fcntl(serialfd, F_SETFL, 0);
 
 	//start fresh
 	memset(&options, 0, sizeof(struct termios));
 
-	options.c_cflag = B19200 | CLOCAL | CS8;
+	
+	#ifdef UNIX
+		options.c_cflag = CREAD | CLOCAL | CS8;
+	#endif
+	#ifdef OSX
+		options.c_cflag = CREAD | CLOCAL | CS8 CDTR_IFLOW;
+		cfmakeraw(&termios);
+	#endif
 
 	//set baudrate
 	switch(baudrate)
@@ -68,9 +77,10 @@ void open_port(void)
 		default:
 			options.c_cflag = options.c_cflag | B19200;
 	}
-	options.c_oflag = 0;
 
-	tcflush(serialfd, TCIFLUSH);
+	#ifdef UNIX
+		tcflush(serialfd, TCIFLUSH);
+	#endif
 
 	//enable our new settings...
 	tcsetattr(serialfd, TCSANOW, &options);
