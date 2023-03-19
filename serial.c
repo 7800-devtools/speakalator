@@ -57,8 +57,8 @@ void open_port(void)
 		options.c_cflag = CREAD | CLOCAL | CS8;
 	#endif
 	#ifdef __APPLE__
-		options.c_cflag = CREAD | CLOCAL | CS8 CDTR_IFLOW;
-		cfmakeraw(&termios);
+		options.c_cflag = CREAD | CLOCAL | CS8 | CDTR_IFLOW;
+		cfmakeraw(&options);
 	#endif
 
 	//set baudrate
