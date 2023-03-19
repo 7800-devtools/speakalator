@@ -10,10 +10,12 @@
 //replace this with proper device entry later...
 char *portdevice = NULL;
 int baudrate = 19200;
-#define DEFAULTDEV  "/dev/ttyUSB0"
 
-// MacOS serial  default?
-// #define DEFAULTDEV  "/dev/tty.usbserial-AVQTCR3P"
+#ifdef __APPLE__
+#define DEFAULTDEV  "/dev/tty.usbserial-AVQTCR3P"
+#else
+#define DEFAULTDEV  "/dev/ttyUSB0"
+#endif
 
 //serial device handle. yes, it's a global
 int serialfd = -1;
@@ -54,7 +56,7 @@ void open_port(void)
 	#ifdef UNIX
 		options.c_cflag = CREAD | CLOCAL | CS8;
 	#endif
-	#ifdef OSX
+	#ifdef __APPLE__
 		options.c_cflag = CREAD | CLOCAL | CS8 CDTR_IFLOW;
 		cfmakeraw(&termios);
 	#endif
