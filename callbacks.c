@@ -1362,7 +1362,7 @@ void on_button_viewdataclose_clicked(GtkToggleButton *togglebutton, gpointer use
 
 void on_dialog_viewdata_close()
 {
-	gtk_widget_hide(GTK_WIDGET(dialog_viewdata));
+	gtk_main_quit();
 }
 
 void on_button_search_clicked(GtkToggleButton *togglebutton, gpointer user_data)
