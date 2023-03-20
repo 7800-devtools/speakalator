@@ -12,7 +12,7 @@ char *portdevice = NULL;
 int baudrate = 19200;
 
 #ifdef __APPLE__
-#define DEFAULTDEV  "/dev/tty.usbserial-AVQTCR3P"
+#define DEFAULTDEV  "/dev/cu.usbmodem834201"
 #else
 #define DEFAULTDEV  "/dev/ttyUSB0"
 #endif
